@@ -909,4 +909,7 @@ CMakeFiles/Detector.dir/DepthDetector.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/unary_negate.h \
   /opt/homebrew/Cellar/opencv/4.9.0_8/include/opencv4/opencv2/core/optim.hpp \
   /opt/homebrew/Cellar/opencv/4.9.0_8/include/opencv4/opencv2/core/ovx.hpp \
+  /opt/homebrew/Cellar/opencv/4.9.0_8/include/opencv4/opencv2/videoio.hpp \
+  /opt/homebrew/Cellar/opencv/4.9.0_8/include/opencv4/opencv2/highgui.hpp \
+  /opt/homebrew/Cellar/opencv/4.9.0_8/include/opencv4/opencv2/imgcodecs.hpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iostream

@@ -1,63 +1,44 @@
-
-#include "opencv2/core.hpp"
+#include <opencv2/core.hpp>
+#include <opencv2/videoio.hpp>
+#include <opencv2/highgui.hpp>
 #include <iostream>
- 
-using namespace std;
+#include <stdio.h>
 using namespace cv;
- 
-static void help(char** argv)
+using namespace std;
+int main(int, char**)
 {
- cout
- << "\n------------------------------------------------------------------\n"
- << " This program shows the serial out capabilities of cv::Mat\n"
- << "That is, cv::Mat M(...); cout << M; Now works.\n"
- << "Output can be formatted to OpenCV, matlab, python, numpy, csv and \n"
- << "C styles Usage:\n"
- << argv[0]
- << "\n------------------------------------------------------------------\n\n"
- << endl;
-}
- 
- 
-int main(int argc, char** argv)
-{
- cv::CommandLineParser parser(argc, argv, "{help h||}");
- if (parser.has("help"))
- {
- help(argv);
- return 0;
+ Mat frame;
+ //--- INITIALIZE VIDEOCAPTURE
+ VideoCapture cap;
+ // open the default camera using default API
+ // cap.open(0);
+ // OR advance usage: select any API backend
+ int deviceID = 0; // 0 = open default camera
+ int apiID = cv::CAP_ANY; // 0 = autodetect default API
+ // open selected camera using selected API
+ cap.open(deviceID, apiID);
+ // check if we succeeded
+ if (!cap.isOpened()) {
+ cerr << "ERROR! Unable to open camera\n";
+ return -1;
  }
- Mat I = Mat::eye(4, 4, CV_64F);
- I.at<double>(1,1) = CV_PI;
- cout << "I = \n" << I << ";" << endl << endl;
- 
- Mat r = Mat(10, 3, CV_8UC3);
- randu(r, Scalar::all(0), Scalar::all(255));
- 
- cout << "r (default) = \n" << r << ";" << endl << endl;
- cout << "r (matlab) = \n" << format(r, Formatter::FMT_MATLAB) << ";" << endl << endl;
- cout << "r (python) = \n" << format(r, Formatter::FMT_PYTHON) << ";" << endl << endl;
- cout << "r (numpy) = \n" << format(r, Formatter::FMT_NUMPY) << ";" << endl << endl;
- cout << "r (csv) = \n" << format(r, Formatter::FMT_CSV) << ";" << endl << endl;
- cout << "r (c) = \n" << format(r, Formatter::FMT_C) << ";" << endl << endl;
- 
- Point2f p(5, 1);
- cout << "p = " << p << ";" << endl;
- 
- Point3f p3f(2, 6, 7);
- cout << "p3f = " << p3f << ";" << endl;
- 
- vector<float> v;
- v.push_back(1);
- v.push_back(2);
- v.push_back(3);
- 
- cout << "shortvec = " << Mat(v) << endl;
- 
- vector<Point2f> points(20);
- for (size_t i = 0; i < points.size(); ++i)
- points[i] = Point2f((float)(i * 5), (float)(i % 7));
- 
- cout << "points = " << points << ";" << endl;
+ //--- GRAB AND WRITE LOOP
+ cout << "Start grabbing" << endl
+ << "Press any key to terminate" << endl;
+ for (;;)
+ {
+ // wait for a new frame from camera and store it into 'frame'
+ cap.read(frame);
+ // check if we succeeded
+ if (frame.empty()) {
+ cerr << "ERROR! blank frame grabbed\n";
+ break;
+ }
+ // show live and wait for a key with timeout long enough to show images
+ imshow("Live", frame);
+ if (waitKey(5) >= 0)
+ break;
+ }
+ // the camera will be deinitialized automatically in VideoCapture destructor
  return 0;
 }
