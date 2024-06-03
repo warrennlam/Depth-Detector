@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/Detector.dir/DepthDetector.cpp.o"
   "CMakeFiles/Detector.dir/DepthDetector.cpp.o.d"
+  "CMakeFiles/Detector.dir/Process.cpp.o"
+  "CMakeFiles/Detector.dir/Process.cpp.o.d"
   "Detector"
   "Detector.pdb"
 )

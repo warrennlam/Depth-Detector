@@ -153,6 +153,30 @@ DepthDetector.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Detector.dir/build.make CMakeFiles/Detector.dir/DepthDetector.cpp.s
 .PHONY : DepthDetector.cpp.s
 
+Process.o: Process.cpp.o
+.PHONY : Process.o
+
+# target to build an object file
+Process.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Detector.dir/build.make CMakeFiles/Detector.dir/Process.cpp.o
+.PHONY : Process.cpp.o
+
+Process.i: Process.cpp.i
+.PHONY : Process.i
+
+# target to preprocess a source file
+Process.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Detector.dir/build.make CMakeFiles/Detector.dir/Process.cpp.i
+.PHONY : Process.cpp.i
+
+Process.s: Process.cpp.s
+.PHONY : Process.s
+
+# target to generate assembly for a file
+Process.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Detector.dir/build.make CMakeFiles/Detector.dir/Process.cpp.s
+.PHONY : Process.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -165,6 +189,9 @@ help:
 	@echo "... DepthDetector.o"
 	@echo "... DepthDetector.i"
 	@echo "... DepthDetector.s"
+	@echo "... Process.o"
+	@echo "... Process.i"
+	@echo "... Process.s"
 .PHONY : help
 
 

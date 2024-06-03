@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Users/warrenlam/Documents/Depth-Detector/DepthDetector.cpp" "CMakeFiles/Detector.dir/DepthDetector.cpp.o" "gcc" "CMakeFiles/Detector.dir/DepthDetector.cpp.o.d"
+  "/Users/warrenlam/Documents/Depth-Detector/Process.cpp" "CMakeFiles/Detector.dir/Process.cpp.o" "gcc" "CMakeFiles/Detector.dir/Process.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.
