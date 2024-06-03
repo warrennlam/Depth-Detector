@@ -1,10 +1,13 @@
 #include <opencv2/core.hpp>
 #include <opencv2/videoio.hpp>
 #include <opencv2/highgui.hpp>
+#include <opencv2/imgproc.hpp>
 #include <iostream>
 #include <stdio.h>
 
+
 #include "Process.h"
+#include "ImageModifier.h"
 
 using namespace cv;
 using namespace std;
@@ -12,6 +15,8 @@ using namespace std;
 int main(int, char **)
 {
     Process process;
+    ImageModifier imageModifier;
+
     Mat frame;
     VideoCapture cap;
     
@@ -34,6 +39,8 @@ int main(int, char **)
     {
 
         cap.read(frame);
+        imageModifier.MyEllipse(frame, 10);
+        
 
         if (frame.empty())
         {
