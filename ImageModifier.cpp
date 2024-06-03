@@ -5,7 +5,6 @@
 #include <opencv2/core.hpp>
 #include <opencv2/imgproc.hpp>
 #include <opencv2/highgui.hpp>
-
 #include "ImageModifier.h"
 
 #define w 300
@@ -25,8 +24,6 @@ void ImageModifier::MyEllipse(Mat img, double angle){
     thickness,
     lineType );
 
-
     //Update
-
 
 }
