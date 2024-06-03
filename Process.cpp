@@ -7,10 +7,10 @@
 
 void Process::DisplayScreen()
 {
-    int width = 320;
-    int height = 240;
-    int n_frames = 100;
-    int fps = 10;
+    width = 320;
+    height = 240;
+    n_frames = 100;
+    fps = 10;
 
         //Use a "generic" example (write the output video in output.mkv video file).
         //ffmpeg -y -f rawvideo -r 10 -video_size 320x240 -pixel_format bgr24 -i pipe: -vcodec libx264 -crf 24 -pix_fmt yuv420p output.mkv
@@ -30,10 +30,10 @@ void Process::DisplayScreen()
         for (int i = 0; i < n_frames; i++)
         {
             cv::Mat frame = cv::Mat(height, width, CV_8UC3);
-            frame = cv::Scalar(60, 60, 60); //Fill background with dark gray
-            cv::putText(frame, std::to_string(i+1), cv::Point(width/2-50*(int)(std::to_string(i+1).length()), height/2+50), cv::FONT_HERSHEY_DUPLEX, 5, cv::Scalar(30, 255, 30), 10);  // Draw a green number
+            frame = cv::Scalar(100, 100, 100); //Fill background with dark gray
+            cv::putText(frame, std::to_string(i+1), cv::Point(width/2-50*(int)(std::to_string(i+1).length()), height/2+50), cv::FONT_HERSHEY_DUPLEX, 5, cv::Scalar(30, 255, 255), 10);  // Draw a green number
 
-            cv::imshow("frame", frame);cv::waitKey(1); //Show the frame for testing
+            cv::imshow("frame rates", frame);cv::waitKey(1); //Show the frame for testing
 
             //Write width*height*3 bytes to stdin pipe of FFmpeg sub-process (assume frame data is continuous in the RAM).
             fwrite(frame.data, 1, width*height*3, pipeout);
