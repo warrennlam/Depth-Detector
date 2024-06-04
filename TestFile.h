@@ -5,12 +5,11 @@
 #include <iostream>
 using namespace cv;
 
-class DepthDetector {
-
+class TestFile {
 
 
 public:
-   static void OnTrackbar(int, void *);
+    static void on_trackbar( int, void *);
 
 
 };

@@ -6,7 +6,6 @@
 #include <iostream>
 #include <stdio.h>
 
-
 #include "Process.h"
 #include "ImageModifier.h"
 #include "DepthDetector.h"
@@ -16,6 +15,23 @@
 using namespace cv;
 using namespace std;
 
+const int alpha_slider_max = 100;
+int alpha_slider;
+double alpha;
+double beta;
+
+Mat src1;
+Mat src2;
+Mat dst;
+
+static void on_trackbar(int, void *)
+{
+    alpha = (double)alpha_slider / alpha_slider_max;
+    beta = (1.0 - alpha);
+    addWeighted(src1, alpha, src2, beta, 0.0, dst);
+    imshow("Linear Blend", dst);
+}
+
 int main(int, char **)
 {
     Process process;
@@ -24,14 +40,12 @@ int main(int, char **)
     Mat frame;
     VideoCapture cap;
 
-    int alphaSlide = 0;
-    const int alphaSliderMax = 100;
-    
+    using namespace cv;
+
     process.DisplayScreen();
 
-    int deviceID = 0; 
-    int apiID = cv::CAP_ANY; 
-
+    int deviceID = 0;
+    int apiID = cv::CAP_ANY;
 
     cap.open(deviceID, apiID);
 
@@ -55,15 +69,8 @@ int main(int, char **)
         Sobel(frame, sobelx, CV_32F, 1, 0);
 
         char TrackbarName[50];
-        snprintf( TrackbarName, sizeof(TrackbarName), "Alpha x %d", alphaSliderMax);
-        cv::createTrackbar(TrackbarName, "Linear Blend", &alphaSlide, alphaSliderMax, DepthDetector::OnTrackbar );
-
-        DepthDetector::OnTrackbar(alphaSlide, 0);
-
-
+        snprintf(TrackbarName, sizeof(TrackbarName), "Alpha x %d", alpha_slider_max);
         
-
-
 
         if (frame.empty())
         {
@@ -71,27 +78,12 @@ int main(int, char **)
             break;
         }
         imshow("Live", frame);
+        createTrackbar(TrackbarName, "Live", &alpha_slider, alpha_slider_max, on_trackbar);
+        // on_trackbar(alpha_slider, 0);
 
         if (waitKey(5) >= 0)
             break;
     }
 
     return 0;
-}
-
-static void OnTrackbar(int, void *)
-{
-    int alphaSlider;
-    double beta;
-    double alpha;
-    Mat src1;
-    Mat src2;
-    Mat dst;
-    const int alphaSliderMax = 100;
-    
-    alpha = (double) alphaSlider/alphaSliderMax ;
-    beta = ( 1.0 - alpha );
-    addWeighted( src1, alpha, src2, beta, 0.0, dst);
-    imshow( "Linear Blend", dst );
-
 }
