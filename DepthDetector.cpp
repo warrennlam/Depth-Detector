@@ -68,6 +68,8 @@ int main(int, char **)
         cvtColor(frame, grey, COLOR_BGR2GRAY);
         Sobel(frame, sobelx, CV_32F, 1, 0);
 
+
+
         char TrackbarName[50];
         snprintf(TrackbarName, sizeof(TrackbarName), "Alpha x %d", alpha_slider_max);
         
