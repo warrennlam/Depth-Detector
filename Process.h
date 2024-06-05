@@ -6,8 +6,9 @@ private:
     int n_frames;
     int frames;
     int fps;
+    cv::Mat newImg;
 
 public:
     void DisplayScreen();
-
+    cv::Mat HSVConverter(cv::Mat img);
 };

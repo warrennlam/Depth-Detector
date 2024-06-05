@@ -5,6 +5,8 @@
 
 #include "Process.h"
 
+using namespace cv;
+
 void Process::DisplayScreen()
 {
     width = 320;
@@ -37,4 +39,19 @@ void Process::DisplayScreen()
 
         std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // sleep for 1 second
       
+}
+
+Mat Process::HSVConverter(Mat img){
+    cvtColor(img, newImg, COLOR_BGR2HSV);
+
+    //Mask red
+
+    Mat returnImg;
+    cv::Scalar redLower (98, 50, 50);
+    cv::Scalar redUpper (139, 255, 255);
+
+    cv::inRange(newImg, redLower, redUpper, returnImg); 
+
+    return returnImg;
+
 }

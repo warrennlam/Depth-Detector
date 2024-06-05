@@ -24,6 +24,8 @@ int main(int, char **)
     Mat frame;
     VideoCapture cap;
 
+
+
     using namespace cv;
 
     process.DisplayScreen();
@@ -45,11 +47,11 @@ int main(int, char **)
     {
 
         cap.read(frame);
-        imageModifier.MyEllipse(frame, 10);
+        //imageModifier.MyEllipse(frame, 10);
 
         Mat grey;
         Mat sobelx;
-        cvtColor(frame, grey, COLOR_BGR2GRAY);
+        cvtColor(frame, grey, COLOR_BGR2HSV);
         Sobel(frame, sobelx, CV_32F, 1, 0);
 
 
@@ -59,7 +61,12 @@ int main(int, char **)
             cerr << "ERROR! blank frame grabbed\n";
             break;
         }
-        imshow("Live", frame);
+
+        Mat outputImg;
+        outputImg = process.HSVConverter(frame);
+
+        imshow("Live", outputImg);
+        imshow("Normal", frame);
 
         if (waitKey(5) >= 0)
             break;
