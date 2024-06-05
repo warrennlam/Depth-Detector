@@ -49,11 +49,8 @@ int main(int, char **)
         cap.read(frame);
         //imageModifier.MyEllipse(frame, 10);
 
-        Mat grey;
-        Mat sobelx;
-        cvtColor(frame, grey, COLOR_BGR2HSV);
-        Sobel(frame, sobelx, CV_32F, 1, 0);
-
+        Mat blured;
+        blur(frame, blured, {80,80});
 
 
         if (frame.empty())
@@ -63,10 +60,10 @@ int main(int, char **)
         }
 
         Mat outputImg;
-        outputImg = process.HSVConverter(frame);
+        outputImg = process.HSVConverter(blured);
 
-        imshow("Live", outputImg);
-        imshow("Normal", frame);
+        imshow("Filtered", outputImg);
+        imshow("Normal", blured);
 
         if (waitKey(5) >= 0)
             break;
