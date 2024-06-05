@@ -7,9 +7,15 @@
 #include <opencv2/highgui.hpp>
 #include "ImageModifier.h"
 
+#include "opencv2/imgcodecs.hpp"
+#include <iostream>
+ 
 #define w 300
 
-void ImageModifier::MyEllipse(Mat img, double angle){
+using namespace cv;
+
+void ImageModifier::MyEllipse(Mat img, double angle)
+{
 
     thickness = 2;
     lineType = 8;

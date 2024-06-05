@@ -5,15 +5,12 @@
 #include <iostream>
 using namespace cv;
 
-class ImageModifier
-{
+class DepthDetector {
 
-private:
-    int thickness;
-    int lineType;
+
 
 public:
-    void MyEllipse(Mat img, double angle);
+   static void OnTrackbar(int, void *);
 
 
 };

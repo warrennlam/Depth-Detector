@@ -2,15 +2,19 @@
 #include <opencv2/videoio.hpp>
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgproc.hpp>
+#include "opencv2/imgcodecs.hpp"
 #include <iostream>
 #include <stdio.h>
 
-
 #include "Process.h"
 #include "ImageModifier.h"
+#include "DepthDetector.h"
+
+#define CV_32F 5
 
 using namespace cv;
 using namespace std;
+
 
 int main(int, char **)
 {
@@ -19,11 +23,15 @@ int main(int, char **)
 
     Mat frame;
     VideoCapture cap;
-    
+
+
+
+    using namespace cv;
+
     process.DisplayScreen();
 
-    int deviceID = 0; 
-    int apiID = cv::CAP_ANY; 
+    int deviceID = 0;
+    int apiID = cv::CAP_ANY;
 
     cap.open(deviceID, apiID);
 
@@ -39,15 +47,23 @@ int main(int, char **)
     {
 
         cap.read(frame);
-        imageModifier.MyEllipse(frame, 10);
-        
+        //imageModifier.MyEllipse(frame, 10);
+
+        Mat blured;
+        blur(frame, blured, {80,80});
+
 
         if (frame.empty())
         {
             cerr << "ERROR! blank frame grabbed\n";
             break;
         }
-        imshow("Live", frame);
+
+        Mat outputImg;
+        outputImg = process.HSVConverter(blured);
+
+        imshow("Filtered", outputImg);
+        imshow("Normal", blured);
 
         if (waitKey(5) >= 0)
             break;

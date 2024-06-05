@@ -5,15 +5,11 @@
 #include <iostream>
 using namespace cv;
 
-class ImageModifier
-{
+class TestFile {
 
-private:
-    int thickness;
-    int lineType;
 
 public:
-    void MyEllipse(Mat img, double angle);
+    static void on_trackbar( int, void *);
 
 
 };
