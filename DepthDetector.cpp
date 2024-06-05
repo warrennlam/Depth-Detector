@@ -28,7 +28,7 @@ int main(int, char **)
     process.DisplayScreen();
 
     int deviceID = 0;
-    int apiID = cv::CAP_ANY;
+    int apiID = CAP_ANY;
 
     cap.open(deviceID, apiID);
 
@@ -59,7 +59,7 @@ int main(int, char **)
         outputImg = process.HSVConverter(blured);
 
         imshow("Filtered", outputImg);
-        imshow("Normal", blured);
+        imshow("Normal", frame);
 
         if (waitKey(5) >= 0)
             break;
