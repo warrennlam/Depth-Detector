@@ -15,7 +15,6 @@
 using namespace cv;
 using namespace std;
 
-
 int main(int, char **)
 {
     Process process;
@@ -23,8 +22,6 @@ int main(int, char **)
 
     Mat frame;
     VideoCapture cap;
-
-
 
     using namespace cv;
 
@@ -47,11 +44,10 @@ int main(int, char **)
     {
 
         cap.read(frame);
-        //imageModifier.MyEllipse(frame, 10);
+        // imageModifier.MyEllipse(frame, 10);
 
         Mat blured;
-        blur(frame, blured, {80,80});
-
+        blur(frame, blured, {80, 80});
 
         if (frame.empty())
         {
