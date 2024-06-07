@@ -11,4 +11,5 @@ private:
 public:
     void DisplayScreen();
     cv::Mat HSVConverter(cv::Mat img);
+    cv::Mat EdgeDetector(cv::Mat outputImg);
 };
