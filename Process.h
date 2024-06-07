@@ -1,3 +1,6 @@
+using namespace std;
+using namespace cv;
+
 class Process {
 
 private:
@@ -6,10 +9,21 @@ private:
     int n_frames;
     int frames;
     int fps;
-    cv::Mat newImg;
+    Mat newImg;
+
+    Mat returnImg;
+    Scalar lowerLim;
+    Scalar upperLim;
+
+    int thresh;
+    Mat canny_output;
+    vector<vector<Point>> contours;
+    vector<Vec4i> hierarchy;
+    Mat drawing;
+    Scalar color;
 
 public:
     void DisplayScreen();
-    cv::Mat HSVConverter(cv::Mat img);
-    cv::Mat EdgeDetector(cv::Mat outputImg);
+    Mat HSVConverter(Mat img);
+    Mat EdgeDetector(Mat outputImg);
 };
