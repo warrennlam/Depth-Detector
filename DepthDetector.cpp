@@ -59,20 +59,33 @@ int main(int, char **)
         Mat outputImg;
         outputImg = process.HSVConverter(blured);
 
+        //New
+
+        
+
+        RNG rng(12345);
+        int thresh = 100;
+
         bitwise_not(outputImg, outputImg);
 
-        // New
-        vector<vector<Point>> contours0;
-                vector<Point> hierarchy;
+        Mat canny_output;
+        Canny( outputImg, canny_output, thresh, thresh*2 );
 
+        vector<vector<Point>> contours;
+        vector<Vec4i> hierarchy;
+        findContours(canny_output, contours, hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE);
 
-        findContours(outputImg, contours0, hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE);
-        drawContours( outputImg, outputImg, 2, Scalar (255,0,0), 2, LINE_8, hierarchy, 0 );
- 
+        Mat drawing = Mat::zeros(canny_output.size(), CV_8UC3);
+
+        for (size_t i = 0; i < contours.size(); i++)
+        {
+            Scalar color = Scalar(255,0,0);
+            drawContours(drawing, contours, (int)i, color, 2, LINE_8, hierarchy, 0);
+        }
 
         // End New
 
-        imshow("Filtered", outputImg);
+        imshow("Filtered", drawing);
         imshow("Normal", frame);
 
         if (waitKey(5) >= 0)
