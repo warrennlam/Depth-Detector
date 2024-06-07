@@ -80,6 +80,7 @@ int main(int, char **)
         for (size_t i = 0; i < contours.size(); i++)
         {
             Scalar color = Scalar(255,255,0);
+
             drawContours(drawing, contours, (int)i, color, 2, LINE_8, hierarchy, 0);
         }
 
