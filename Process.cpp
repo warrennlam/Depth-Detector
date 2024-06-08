@@ -54,7 +54,7 @@ Mat Process::HSVConverter(Mat img)
     return returnImg;
 }
 
-Mat Process::EdgeDetector(Mat outputImg)
+Mat Process::EdgeDetector(Mat outputImg, int &objectWidth)
 {
     thresh = 30;
     bitwise_not(outputImg, outputImg);
@@ -75,6 +75,7 @@ Mat Process::EdgeDetector(Mat outputImg)
     vector<Rect> boundRect(contours.size());
     vector<Point2f> centers(contours.size());
     vector<float> radius(contours.size());
+
 
     for (size_t i = 0; i < contours.size(); i++)
     {
@@ -100,6 +101,14 @@ Mat Process::EdgeDetector(Mat outputImg)
 
     displayColor = Scalar(255, 255, 255);
     circle(drawing, centerPt, radiusSize, displayColor, 2);
+    
+    String displaySize = to_string(radiusSize);
+    putText(drawing, displaySize, centerPt,FONT_HERSHEY_COMPLEX, 1, displayColor, 1, LINE_8);
 
     return drawing;
+}
+
+void Process::DisplayDistance(int objectWidth){
+    
+
 }
