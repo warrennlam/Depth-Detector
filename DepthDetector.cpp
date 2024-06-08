@@ -31,6 +31,7 @@ int main(int, char **)
 
     int deviceID = 0;
     int apiID = CAP_ANY;
+    int objectWidth = 0;
 
     cap.open(deviceID, apiID);
 
@@ -57,7 +58,7 @@ int main(int, char **)
         outputImg = process.HSVConverter(outputImg);
 
         Mat drawing;
-        drawing = process.EdgeDetector(outputImg);
+        drawing = process.EdgeDetector(outputImg, objectWidth);
 
         imshow("Filtered", drawing);
         imshow("Normal", frame);

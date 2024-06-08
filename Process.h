@@ -30,5 +30,6 @@ private:
 public:
     void DisplayScreen();
     Mat HSVConverter(Mat img);
-    Mat EdgeDetector(Mat outputImg);
+    Mat EdgeDetector(Mat outputImg, int &objectWidth);
+    void DisplayDistance(int objectWidth);
 };
