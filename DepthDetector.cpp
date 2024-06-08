@@ -27,6 +27,8 @@ int main(int, char **)
 
     process.DisplayScreen();
 
+    //Display Screen
+
     int deviceID = 0;
     int apiID = CAP_ANY;
 
