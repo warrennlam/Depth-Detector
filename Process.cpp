@@ -16,15 +16,15 @@ void Process::DisplayScreen()
     fps = 10;
 
     string ffmpeg_cmd = string("ffmpeg -y -f rawvideo -r ") + to_string(fps) +
-                             " -video_size " + to_string(width) + "x" + to_string(height) +
-                             " -pixel_format bgr24 -i pipe: -vcodec libx264 -crf 24 -pix_fmt yuv420p output.mkv";
+                        " -video_size " + to_string(width) + "x" + to_string(height) +
+                        " -pixel_format bgr24 -i pipe: -vcodec libx264 -crf 24 -pix_fmt yuv420p output.mkv";
 
     FILE *pipeout = popen(ffmpeg_cmd.c_str(), "w");
 
     for (int i = 0; i < n_frames; i++)
     {
         Mat frame = Mat(height, width, CV_8UC3);
-        frame = Scalar(100, 100, 100);                                                                                                                                                       // Fill background with dark gray
+        frame = Scalar(100, 100, 100);                                                                                                                                 // Fill background with dark gray
         putText(frame, to_string(i + 1), Point(width / 2 - 50 * (int)(to_string(i + 1).length()), height / 2 + 50), FONT_HERSHEY_DUPLEX, 5, Scalar(30, 255, 255), 10); // Draw a green number
 
         imshow("frame rates", frame);
@@ -60,7 +60,6 @@ Mat Process::EdgeDetector(Mat outputImg)
     bitwise_not(outputImg, outputImg);
     Canny(outputImg, canny_output, thresh, thresh * 2);
 
-    
     findContours(canny_output, contours, hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE);
 
     drawing = Mat::zeros(canny_output.size(), CV_8UC3);
@@ -71,6 +70,37 @@ Mat Process::EdgeDetector(Mat outputImg)
 
         drawContours(drawing, contours, (int)i, color, 2, LINE_8, hierarchy, 0);
     }
+
+    vector<vector<Point>> contours_poly(contours.size());
+    vector<Rect> boundRect(contours.size());
+    vector<Point2f> centers(contours.size());
+    vector<float> radius(contours.size());
+
+    for (size_t i = 0; i < contours.size(); i++)
+    {
+        approxPolyDP(contours[i], contours_poly[i], 3, true);
+        boundRect[i] = boundingRect(contours_poly[i]);
+        minEnclosingCircle(contours_poly[i], centers[i], radius[i]);
+    }
+
+    int maxRadius = 0;
+    int radiusSize = 0;
+    Point2f centerPt;
+
+
+    for (size_t i = 0; i < contours.size(); i++)
+    {
+        // drawContours(drawing, contours_poly, (int)i, color);
+        // rectangle(drawing, boundRect[i].tl(), boundRect[i].br(), color, 2);
+        if (maxRadius < (int)radius[i])
+        {
+            radiusSize = (int)radius[i];
+            centerPt = centers[i];
+        }
+    }
+
+    Scalar displayColor = Scalar(255, 255, 255);
+    circle(drawing, centerPt, radiusSize, displayColor, 2);
 
     return drawing;
 }
