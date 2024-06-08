@@ -83,9 +83,8 @@ Mat Process::EdgeDetector(Mat outputImg)
         minEnclosingCircle(contours_poly[i], centers[i], radius[i]);
     }
 
-    int maxRadius = 0;
-    int radiusSize = 0;
-    Point2f centerPt;
+    maxRadius = 0;
+    radiusSize = 0;
 
 
     for (size_t i = 0; i < contours.size(); i++)
@@ -99,7 +98,7 @@ Mat Process::EdgeDetector(Mat outputImg)
         }
     }
 
-    Scalar displayColor = Scalar(255, 255, 255);
+    displayColor = Scalar(255, 255, 255);
     circle(drawing, centerPt, radiusSize, displayColor, 2);
 
     return drawing;

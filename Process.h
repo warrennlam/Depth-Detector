@@ -22,6 +22,11 @@ private:
     Mat drawing;
     Scalar color;
 
+    int maxRadius;
+    int radiusSize;
+    Point2f centerPt;
+    Scalar displayColor;
+
 public:
     void DisplayScreen();
     Mat HSVConverter(Mat img);
