@@ -30,6 +30,16 @@ void ImageModifier::MyEllipse(Mat img, double angle)
     thickness,
     lineType );
 
+    ellipse( img,
+    Point( w + 400, w + 20 ),
+    Size( w / 2, w / 2 ),
+    angle,
+    0,
+    360,
+    Scalar( 0, 0, 255 ),
+    thickness,
+    lineType );
+
     //Update
 
 }
