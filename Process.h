@@ -27,9 +27,12 @@ private:
     Point2f centerPt;
     Scalar displayColor;
 
+    double distanceFromCamera;
+
 public:
     void DisplayScreen();
     Mat HSVConverter(Mat img);
-    Mat EdgeDetector(Mat outputImg, int &objectWidth);
-    void DisplayDistance(int objectWidth);
+    Mat EdgeDetector(Mat outputImg, int &objectWidth, Point2f &ojectPoint);
+    Mat DisplayDistance(Mat drawing, int objectWidth);
+    Mat DisplayTracking(Mat drawing, int objectWidth, Point2f objectPoint);
 };
