@@ -23,8 +23,6 @@ int main(int, char **)
     Mat frame;
     VideoCapture cap;
 
-    using namespace cv;
-
     process.DisplayScreen();
 
     //Display Screen
