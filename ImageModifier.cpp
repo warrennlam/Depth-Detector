@@ -14,6 +14,8 @@
 
 using namespace cv;
 
+
+
 void ImageModifier::MyEllipse(Mat img, double angle)
 {
 

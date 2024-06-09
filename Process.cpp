@@ -112,7 +112,7 @@ Mat Process::EdgeDetector(Mat outputImg, int &objectWidth, Point2f &objectPoint)
 Mat Process::DisplayDistance(Mat drawing, int objectWidth)
 {
 
-    distanceFromCamera = (18 * 220) / objectWidth;
+    distanceFromCamera = (12 * 220) / objectWidth;
     String displaySize = to_string(int(distanceFromCamera));
     putText(drawing, displaySize, Point2f(50, 50), FONT_HERSHEY_COMPLEX, 1, Scalar(0, 255, 0), 1, LINE_8);
     putText(drawing, "inches", Point2f(125, 50), FONT_HERSHEY_COMPLEX, 1, Scalar(0, 255, 0), 1, LINE_8);
