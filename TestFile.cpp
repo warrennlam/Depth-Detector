@@ -47,6 +47,4 @@ int main(int, char ** )
  waitKey(0);
  return 0;
 
- //Update Test
- //Testing two
 }
