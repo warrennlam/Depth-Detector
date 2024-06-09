@@ -76,7 +76,6 @@ Mat Process::EdgeDetector(Mat outputImg, int &objectWidth, Point2f &objectPoint)
     vector<Point2f> centers(contours.size());
     vector<float> radius(contours.size());
 
-
     for (size_t i = 0; i < contours.size(); i++)
     {
         approxPolyDP(contours[i], contours_poly[i], 3, true);
@@ -86,7 +85,6 @@ Mat Process::EdgeDetector(Mat outputImg, int &objectWidth, Point2f &objectPoint)
 
     maxRadius = 0;
     radiusSize = 0;
-
 
     for (size_t i = 0; i < contours.size(); i++)
     {
@@ -103,7 +101,7 @@ Mat Process::EdgeDetector(Mat outputImg, int &objectWidth, Point2f &objectPoint)
     circle(drawing, centerPt, radiusSize, displayColor, 2);
 
     objectPoint = centerPt;
-    
+
     String displaySize = to_string(radiusSize);
     objectWidth = radiusSize;
     // putText(drawing, displaySize, centerPt,FONT_HERSHEY_COMPLEX, 1, displayColor, 1, LINE_8);
@@ -111,20 +109,19 @@ Mat Process::EdgeDetector(Mat outputImg, int &objectWidth, Point2f &objectPoint)
     return drawing;
 }
 
-Mat Process::DisplayDistance(Mat drawing, int objectWidth){
-    
+Mat Process::DisplayDistance(Mat drawing, int objectWidth)
+{
+
     distanceFromCamera = (18 * 220) / objectWidth;
     String displaySize = to_string(int(distanceFromCamera));
-    putText(drawing, displaySize, Point2f (50,50),FONT_HERSHEY_COMPLEX, 1, Scalar(0,255,0), 1, LINE_8);
-    putText(drawing, "inches", Point2f (125,50),FONT_HERSHEY_COMPLEX, 1, Scalar(0,255,0), 1, LINE_8);
-
+    putText(drawing, displaySize, Point2f(50, 50), FONT_HERSHEY_COMPLEX, 1, Scalar(0, 255, 0), 1, LINE_8);
+    putText(drawing, "inches", Point2f(125, 50), FONT_HERSHEY_COMPLEX, 1, Scalar(0, 255, 0), 1, LINE_8);
 
     return drawing;
 }
 
 Mat Process::DisplayTracking(Mat drawing, int objectWidth, Point2f objectPoint)
 {
-        circle(drawing, objectPoint, objectWidth, Scalar(255,255,255), 2);
+    circle(drawing, objectPoint, objectWidth, Scalar(255, 255, 255), 2);
     return drawing;
-
 }
