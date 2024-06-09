@@ -125,3 +125,58 @@ Mat Process::DisplayTracking(Mat drawing, int objectWidth, Point2f objectPoint)
     circle(drawing, objectPoint, objectWidth, Scalar(255, 255, 255), 2);
     return drawing;
 }
+
+pair<int, int> Process::Calibration(Mat frame, int &pixelLength, int &objectLength)
+{
+    pair<int, int> pixelCalibrationReturn;
+    thresh = 30;
+    bitwise_not(frame, frame);
+    Canny(frame, canny_output, thresh, thresh * 2);
+
+    findContours(canny_output, contours, hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE);
+
+    drawing = Mat::zeros(canny_output.size(), CV_8UC3);
+
+    for (size_t i = 0; i < contours.size(); i++)
+    {
+        color = Scalar(255, 255, 0);
+
+        drawContours(drawing, contours, (int)i, color, 2, LINE_8, hierarchy, 0);
+    }
+
+    vector<vector<Point>> contours_poly(contours.size());
+    vector<Rect> boundRect(contours.size());
+    vector<Point2f> centers(contours.size());
+    vector<float> radius(contours.size());
+
+    for (size_t i = 0; i < contours.size(); i++)
+    {
+        approxPolyDP(contours[i], contours_poly[i], 3, true);
+        boundRect[i] = boundingRect(contours_poly[i]);
+        minEnclosingCircle(contours_poly[i], centers[i], radius[i]);
+    }
+
+    maxRadius = 0;
+    radiusSize = 0;
+
+    for (size_t i = 0; i < contours.size(); i++)
+    {
+        // drawContours(drawing, contours_poly, (int)i, color);
+        // rectangle(drawing, boundRect[i].tl(), boundRect[i].br(), color, 2);
+        if (maxRadius < (int)radius[i])
+        {
+            radiusSize = (int)radius[i];
+            centerPt = centers[i];
+        }
+    }
+
+    displayColor = Scalar(255, 255, 255);
+    circle(drawing, centerPt, radiusSize, displayColor, 2);
+
+
+    
+    pixelCalibrationReturn.second = radiusSize;
+
+
+    return pixelCalibrationReturn;
+}

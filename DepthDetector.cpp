@@ -23,7 +23,7 @@ int main(int, char **)
     Mat frame;
     VideoCapture cap;
 
-    process.DisplayScreen();
+    // process.DisplayScreen();
 
     //Display Screen
 
@@ -31,6 +31,9 @@ int main(int, char **)
     int apiID = CAP_ANY;
     int objectWidth = 0;
     Point2f objectPoint;
+    int pixelLengthCalibration;
+    int objectSizeCalibration;
+
 
     cap.open(deviceID, apiID);
 
