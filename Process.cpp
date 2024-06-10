@@ -27,7 +27,7 @@ void Process::DisplayScreen()
         frame = Scalar(100, 100, 100);                                                                                                                                 // Fill background with dark gray
         putText(frame, to_string(i + 1), Point(width / 2 - 50 * (int)(to_string(i + 1).length()), height / 2 + 50), FONT_HERSHEY_DUPLEX, 5, Scalar(30, 255, 255), 10); // Draw a green number
 
-        imshow("frame rates", frame);
+        imshow("Loading Calibration", frame);
         waitKey(1); // Show the frame for testing
 
         fwrite(frame.data, 1, width * height * 3, pipeout);
@@ -112,7 +112,7 @@ Mat Process::EdgeDetector(Mat outputImg, int &objectWidth, Point2f &objectPoint)
 Mat Process::DisplayDistance(Mat drawing, int objectWidth)
 {
 
-    distanceFromCamera = (12 * 220) / objectWidth;
+    distanceFromCamera = (18 * 220) / objectWidth;
     String displaySize = to_string(int(distanceFromCamera));
     putText(drawing, displaySize, Point2f(50, 50), FONT_HERSHEY_COMPLEX, 1, Scalar(0, 255, 0), 1, LINE_8);
     putText(drawing, "inches", Point2f(125, 50), FONT_HERSHEY_COMPLEX, 1, Scalar(0, 255, 0), 1, LINE_8);
@@ -126,12 +126,18 @@ Mat Process::DisplayTracking(Mat drawing, int objectWidth, Point2f objectPoint)
     return drawing;
 }
 
-pair<int, int> Process::Calibration(Mat frame, int &pixelLength, int &objectLength)
+Mat Process::Calibration(Mat frame, int &pixelLength, int &objectLength)
 {
     pair<int, int> pixelCalibrationReturn;
     thresh = 30;
-    bitwise_not(frame, frame);
-    Canny(frame, canny_output, thresh, thresh * 2);
+
+    Mat outputImg;
+
+    blur(frame, outputImg, {80, 80});
+     outputImg = HSVConverter(outputImg);
+
+    bitwise_not(outputImg, outputImg);
+    Canny(outputImg, canny_output, thresh, thresh * 2);
 
     findContours(canny_output, contours, hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE);
 
@@ -171,12 +177,13 @@ pair<int, int> Process::Calibration(Mat frame, int &pixelLength, int &objectLeng
     }
 
     displayColor = Scalar(255, 255, 255);
-    circle(drawing, centerPt, radiusSize, displayColor, 2);
+    circle(frame, centerPt, radiusSize, displayColor, 2);
+
+    String sizeInpCalibration;
 
 
-    
     pixelCalibrationReturn.second = radiusSize;
 
 
-    return pixelCalibrationReturn;
+    return frame;
 }

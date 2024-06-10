@@ -23,17 +23,13 @@ int main(int, char **)
     Mat frame;
     VideoCapture cap;
 
-    // process.DisplayScreen();
-
-    //Display Screen
-
     int deviceID = 0;
     int apiID = CAP_ANY;
     int objectWidth = 0;
     Point2f objectPoint;
     int pixelLengthCalibration;
     int objectSizeCalibration;
-
+    pair<int, int> calibrationSizes;
 
     cap.open(deviceID, apiID);
 
@@ -42,6 +38,44 @@ int main(int, char **)
         cerr << "ERROR! Unable to open camera\n";
         return -1;
     }
+
+
+    for (;;)
+    {
+    
+        cap.read(frame);
+        if (frame.empty())
+        {
+            cerr << "ERROR! blank frame grabbed\n";
+            break;
+        }
+
+        frame = process.Calibration(frame, pixelLengthCalibration, objectSizeCalibration);
+
+        imshow("Normal", frame);
+
+        if (waitKey(5) == 27){
+            cap.release();
+            destroyWindow("Normal");
+            break;
+        }
+
+    }
+
+
+
+    process.DisplayScreen();
+
+    //Display Screen
+
+    cap.open(deviceID, apiID);
+
+    if (!cap.isOpened())
+    {
+        cerr << "ERROR! Unable to open camera\n";
+        return -1;
+    }
+    
 
     cout << "Start grabbing" << endl
          << "Press any key to terminate" << endl;
