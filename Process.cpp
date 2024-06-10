@@ -44,7 +44,7 @@ Mat Process::HSVConverter(Mat img)
 {
     cvtColor(img, newImg, COLOR_BGR2HSV);
 
-    // Mask red
+    // Mask Blue Objects
 
     lowerLim = Scalar(98, 50, 50);
     upperLim = Scalar(139, 255, 255);
@@ -134,7 +134,7 @@ Mat Process::Calibration(Mat frame, int &pixelLength, int &objectLength)
     Mat outputImg;
 
     blur(frame, outputImg, {80, 80});
-     outputImg = HSVConverter(outputImg);
+    outputImg = HSVConverter(outputImg);
 
     bitwise_not(outputImg, outputImg);
     Canny(outputImg, canny_output, thresh, thresh * 2);
@@ -181,9 +181,7 @@ Mat Process::Calibration(Mat frame, int &pixelLength, int &objectLength)
 
     String sizeInpCalibration;
 
-
     pixelCalibrationReturn.second = radiusSize;
-
 
     return frame;
 }
