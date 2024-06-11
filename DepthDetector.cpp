@@ -51,6 +51,7 @@ int main(int, char **)
 
         frame = process.Calibration(frame, pixelLengthCalibration, objectSizeCalibration);
 
+
         imshow("Normal", frame);
 
         if (waitKey(5) == 27)

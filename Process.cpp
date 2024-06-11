@@ -2,7 +2,6 @@
 #include <chrono>
 #include <thread>
 #include "opencv2/opencv.hpp"
-
 #include "Process.h"
 
 using namespace cv;
@@ -182,6 +181,8 @@ Mat Process::Calibration(Mat frame, int &pixelLength, int &objectLength)
     String sizeInpCalibration;
 
     pixelCalibrationReturn.second = radiusSize;
+    putText(frame, "Press ESC When Finished", Point(25,200),FONT_HERSHEY_COMPLEX , 2, Scalar(180, 100, 30), 2); 
+
 
     return frame;
 }
