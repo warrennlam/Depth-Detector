@@ -166,6 +166,7 @@ Mat Process::Calibration(Mat frame, int &pixelLength, int &objectLength)
 
     for (size_t i = 0; i < contours.size(); i++)
     {
+        //Drawing Lists
         // drawContours(drawing, contours_poly, (int)i, color);
         // rectangle(drawing, boundRect[i].tl(), boundRect[i].br(), color, 2);
         if (maxRadius < (int)radius[i])
