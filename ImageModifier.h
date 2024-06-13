@@ -14,6 +14,6 @@ private:
 
 public:
     void MyEllipse(Mat img, double angle);
-    void MyRectangle(Mat img, double angle);
+    void MyRectangle(Mat img, int size);
 
 };
