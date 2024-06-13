@@ -41,3 +41,19 @@ void ImageModifier::MyEllipse(Mat img, double angle)
     lineType );
 
 }
+
+void ImageModifier::MyRectangle(Mat img, double angle)
+{
+
+    thickness = 2;
+    lineType = 8;
+    
+    rectangle( img,
+    Point( w + 500, w + 50 ),
+    Point( w , w),
+    Scalar( 255, 0, 255 ),
+    thickness,
+    lineType );
+
+
+}
