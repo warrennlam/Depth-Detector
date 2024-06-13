@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <chrono>
 #include <thread>
 #include "opencv2/opencv.hpp"
