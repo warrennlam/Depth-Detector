@@ -48,6 +48,7 @@ int main(int, char **)
         }
 
         frame = process.Calibration(frame, pixelLengthCalibration, objectSizeCalibration);
+        imageModifier.MyRectangle(frame, 20);
 
 
         imshow("Normal", frame);

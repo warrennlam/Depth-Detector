@@ -49,7 +49,7 @@ void ImageModifier::MyRectangle(Mat img, double angle)
     lineType = 8;
     
     rectangle( img,
-    Point( w + 500, w + 50 ),
+    Point( w + 500, w + 100 ),
     Point( w , w),
     Scalar( 255, 0, 255 ),
     thickness,
