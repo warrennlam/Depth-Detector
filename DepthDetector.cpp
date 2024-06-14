@@ -1,3 +1,4 @@
+//==Libraries==========================================
 #include <opencv2/core.hpp>
 #include <opencv2/videoio.hpp>
 #include <opencv2/highgui.hpp>
@@ -7,14 +8,18 @@
 
 #include "Process.h"
 #include "ImageModifier.h"
+//=====================================================
 
+//Initialization=======================================
 #define CV_32F 5
 
 using namespace cv;
 using namespace std;
+//=====================================================
 
 int main(int, char **)
 {
+
     Process process;
     ImageModifier imageModifier;
 
@@ -60,6 +65,10 @@ int main(int, char **)
             break;
         }
     }
+
+    //==========
+
+    //Update Refresh Rate
 
     process.DisplayScreen();
 
