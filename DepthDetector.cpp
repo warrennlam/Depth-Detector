@@ -34,6 +34,7 @@ int main(int, char **)
     int objectSizeCalibration;
     pair<int, int> calibrationSizes;
 
+//[Calibrate Depth Sizing]=============================
     cap.open(deviceID, apiID);
 
     if (!cap.isOpened())
@@ -65,14 +66,16 @@ int main(int, char **)
             break;
         }
     }
+//=====================================================
 
-    //==========
 
-    //Update Refresh Rate
-
+//[Update Refresh Rate]================================
     process.DisplayScreen();
 
-    // Display Screen
+//=====================================================
+
+
+//[Show Depth Sensing]=================================
 
     cap.open(deviceID, apiID);
 
@@ -110,6 +113,8 @@ int main(int, char **)
         if (waitKey(5) >= 0)
             break;
     }
+
+//=====================================================
 
     return 0;
 }
