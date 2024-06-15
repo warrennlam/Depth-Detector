@@ -1,7 +1,9 @@
+//==Libraries==========================================
 #include <chrono>
 #include <thread>
 #include "opencv2/opencv.hpp"
 #include "Process.h"
+//=====================================================
 
 using namespace cv;
 using namespace std;
