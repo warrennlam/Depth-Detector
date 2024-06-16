@@ -101,8 +101,8 @@ int main(int, char **)
 
         Mat drawing;
         drawing = process.EdgeDetector(outputImg, objectWidth, objectPoint);
-        drawing = process.DisplayDistance(drawing, objectWidth);
-        frame = process.DisplayDistance(frame, objectWidth);
+        drawing = process.DisplayDistance(drawing, objectWidth, pixelLengthCalibration);
+        frame = process.DisplayDistance(frame, objectWidth, pixelLengthCalibration);
         frame = process.DisplayTracking(frame, objectWidth, objectPoint);
 
         imshow("Filtered", drawing);

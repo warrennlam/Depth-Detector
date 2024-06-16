@@ -102,7 +102,6 @@ Mat Process::EdgeDetector(Mat outputImg, int &objectWidth, Point2f &objectPoint)
     }
 
     maxRadius = 0;
-    radiusSize = 0;
 
     for (size_t i = 0; i < contours.size(); i++)
     {
@@ -127,10 +126,10 @@ Mat Process::EdgeDetector(Mat outputImg, int &objectWidth, Point2f &objectPoint)
     return drawing;
 }
 
-Mat Process::DisplayDistance(Mat drawing, int objectWidth)
+Mat Process::DisplayDistance(Mat drawing, int objectWidth, int pixelLength)
 {
 
-    distanceFromCamera = (18 * 220) / objectWidth;
+    distanceFromCamera = (12 * pixelLength) / objectWidth;
     String displaySize = to_string(int(distanceFromCamera));
     putText(drawing, displaySize, Point2f(50, 50), FONT_HERSHEY_COMPLEX, 1, Scalar(0, 255, 0), 1, LINE_8);
     putText(drawing, "inches", Point2f(125, 50), FONT_HERSHEY_COMPLEX, 1, Scalar(0, 255, 0), 1, LINE_8);
@@ -181,7 +180,6 @@ Mat Process::Calibration(Mat frame, int &pixelLength)
     }
 
     maxRadius = 0;
-    radiusSize = 0;
 
     for (size_t i = 0; i < contours.size(); i++)
     {
@@ -189,7 +187,7 @@ Mat Process::Calibration(Mat frame, int &pixelLength)
         // rectangle(drawing, boundRect[i].tl(), boundRect[i].br(), color, 2);
         if (maxRadius < (int)radius[i])
         {
-            radiusSize = (int)radius[i];
+            maxRadius = (int)radius[i];
             centerPt = centers[i];
         }
     }
@@ -201,7 +199,7 @@ Mat Process::Calibration(Mat frame, int &pixelLength)
 
     pixelCalibrationReturn.second = maxRadius;
     putText(frame, "Press ESC When The Object is 12 Inches Away", Point(15,60),FONT_HERSHEY_COMPLEX , 1, Scalar(235, 112, 249), 2); 
-
+    pixelLength = maxRadius;
 
     return frame;
 }

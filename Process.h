@@ -23,7 +23,6 @@ private:
     Scalar color;
 
     int maxRadius;
-    int radiusSize;
     Point2f centerPt;
     Scalar displayColor;
 
@@ -33,7 +32,7 @@ public:
     void DisplayScreen();
     Mat HSVConverter(Mat img);
     Mat EdgeDetector(Mat outputImg, int &objectWidth, Point2f &ojectPoint);
-    Mat DisplayDistance(Mat drawing, int objectWidth);
+    Mat DisplayDistance(Mat drawing, int objectWidth, int pixelLength);
     Mat DisplayTracking(Mat drawing, int objectWidth, Point2f objectPoint);
     Mat Calibration(Mat frame, int &pixelLength);
 };
