@@ -122,8 +122,6 @@ Mat Process::EdgeDetector(Mat outputImg, int &objectWidth, Point2f &objectPoint)
 
     for (size_t i = 0; i < contours.size(); i++)
     {
-        // drawContours(drawing, contours_poly, (int)i, color);
-        // rectangle(drawing, boundRect[i].tl(), boundRect[i].br(), color, 2);
         if (maxRadius < (int)radius[i])
         {
             maxRadius = (int)radius[i];
@@ -245,8 +243,6 @@ Mat Process::Calibration(Mat frame, int &pixelLength)
 
     for (size_t i = 0; i < contours.size(); i++)
     {
-        // drawContours(drawing, contours_poly, (int)i, color);
-        // rectangle(drawing, boundRect[i].tl(), boundRect[i].br(), color, 2);
         if (maxRadius < (int)radius[i])
         {
             maxRadius = (int)radius[i];
