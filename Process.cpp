@@ -8,6 +8,14 @@
 using namespace cv;
 using namespace std;
 
+/*[DisplayScreen]======================================
+Function:
+    Displays the loading timer of the image processing
+Parameter:
+    Void
+Return:
+    Void
+=====================================================*/
 void Process::DisplayScreen()
 {
     width = 320;
