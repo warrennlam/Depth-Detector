@@ -31,7 +31,6 @@ int main(int, char **)
     int objectWidth = 0;
     Point2f objectPoint;
     int pixelLengthCalibration;
-    int objectSizeCalibration;
     pair<int, int> calibrationSizes;
 
 //[Calibrate Depth Sizing]=============================
@@ -53,8 +52,7 @@ int main(int, char **)
             break;
         }
 
-        frame = process.Calibration(frame, pixelLengthCalibration, objectSizeCalibration);
-        imageModifier.MyRectangle(frame, 200);
+        frame = process.Calibration(frame, pixelLengthCalibration);
 
 
         imshow("Normal", frame);

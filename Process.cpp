@@ -48,6 +48,16 @@ void Process::DisplayScreen()
     std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // sleep for 1 second
 }
 
+/*[HSVConverter]======================================
+Function:
+    Changes the image from RGB to HSV
+Parameter:
+    Mat: img
+        Image from the video
+Return:
+    Mat: return image
+        Conversion of the image
+=====================================================*/
 Mat Process::HSVConverter(Mat img)
 {
     cvtColor(img, newImg, COLOR_BGR2HSV);
@@ -100,18 +110,18 @@ Mat Process::EdgeDetector(Mat outputImg, int &objectWidth, Point2f &objectPoint)
         // rectangle(drawing, boundRect[i].tl(), boundRect[i].br(), color, 2);
         if (maxRadius < (int)radius[i])
         {
-            radiusSize = (int)radius[i];
+            maxRadius = (int)radius[i];
             centerPt = centers[i];
         }
     }
 
     displayColor = Scalar(255, 255, 255);
-    circle(drawing, centerPt, radiusSize, displayColor, 2);
+    circle(drawing, centerPt, maxRadius, displayColor, 2);
 
     objectPoint = centerPt;
 
-    String displaySize = to_string(radiusSize);
-    objectWidth = radiusSize;
+    String displaySize = to_string(maxRadius);
+    objectWidth = maxRadius;
     // putText(drawing, displaySize, centerPt,FONT_HERSHEY_COMPLEX, 1, displayColor, 1, LINE_8);
 
     return drawing;
@@ -134,7 +144,7 @@ Mat Process::DisplayTracking(Mat drawing, int objectWidth, Point2f objectPoint)
     return drawing;
 }
 
-Mat Process::Calibration(Mat frame, int &pixelLength, int &objectLength)
+Mat Process::Calibration(Mat frame, int &pixelLength)
 {
     pair<int, int> pixelCalibrationReturn;
     thresh = 30;
@@ -185,12 +195,12 @@ Mat Process::Calibration(Mat frame, int &pixelLength, int &objectLength)
     }
 
     displayColor = Scalar(255, 255, 255);
-    circle(frame, centerPt, radiusSize, displayColor, 2);
+    circle(frame, centerPt, maxRadius, displayColor, 2);
 
     String sizeInpCalibration;
 
-    pixelCalibrationReturn.second = radiusSize;
-    putText(frame, "Press ESC When Finished", Point(25,200),FONT_HERSHEY_COMPLEX , 2, Scalar(180, 100, 30), 2); 
+    pixelCalibrationReturn.second = maxRadius;
+    putText(frame, "Press ESC When The Object is 12 Inches Away", Point(15,60),FONT_HERSHEY_COMPLEX , 1, Scalar(235, 112, 249), 2); 
 
 
     return frame;

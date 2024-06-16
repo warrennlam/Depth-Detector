@@ -35,5 +35,5 @@ public:
     Mat EdgeDetector(Mat outputImg, int &objectWidth, Point2f &ojectPoint);
     Mat DisplayDistance(Mat drawing, int objectWidth);
     Mat DisplayTracking(Mat drawing, int objectWidth, Point2f objectPoint);
-    Mat Calibration(Mat frame, int &pixelLength, int &objectLength);
+    Mat Calibration(Mat frame, int &pixelLength);
 };
