@@ -1,19 +1,31 @@
+//==Libraries==========================================
 #include <chrono>
 #include "opencv2/opencv.hpp"
 #include <opencv2/core.hpp>
 #include <opencv2/imgproc.hpp>
 #include <opencv2/highgui.hpp>
 #include "ImageModifier.h"
-
 #include "opencv2/imgcodecs.hpp"
 #include <iostream>
- 
-#define w 300
+ //=====================================================
 
+
+#define w 300
 using namespace cv;
 
 
-
+/*[MyEllipse]==========================================
+Function:
+    Generates an ellipse
+Parameter:
+    Mat: frame
+        The frame meant to be searched through
+    Double: angle
+        Angle at which the angle of the ellipse is 
+        drawn
+Return:
+    Void
+=====================================================*/
 void ImageModifier::MyEllipse(Mat img, double angle)
 {
 
@@ -42,6 +54,18 @@ void ImageModifier::MyEllipse(Mat img, double angle)
 
 }
 
+
+/*[MyRectangle]========================================
+Function:
+    Generate a rectangle on a Mat image
+Parameter:
+    Mat: frame
+        The frame meant to be searched through
+    Int: size
+        Draw the rectangle at the specified size
+Return:
+    Void
+=====================================================*/
 void ImageModifier::MyRectangle(Mat img, int size)
 {
 

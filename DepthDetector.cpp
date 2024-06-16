@@ -69,8 +69,8 @@ int main(int, char **)
 
 //[Update Refresh Rate]================================
     process.DisplayScreen();
-
 //=====================================================
+
 
 
 //[Show Depth Sensing]=================================

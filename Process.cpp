@@ -72,6 +72,23 @@ Mat Process::HSVConverter(Mat img)
     return returnImg;
 }
 
+
+/*[EdgeDetector]=======================================
+Function:
+    Finds the Edges of the Object in Question
+    Uses contours to find the edges
+Parameter:
+    Mat: outputImg
+        The frame meant to be searched through
+    Int: objectWidth
+        The pixel width of image
+    Point2f: objectPoint
+        Location on the frame of where the object is
+Return:
+    Mat: outputImg
+        The image modified to show the edges via
+        contours
+=====================================================*/
 Mat Process::EdgeDetector(Mat outputImg, int &objectWidth, Point2f &objectPoint)
 {
     thresh = 30;
@@ -121,11 +138,27 @@ Mat Process::EdgeDetector(Mat outputImg, int &objectWidth, Point2f &objectPoint)
 
     String displaySize = to_string(maxRadius);
     objectWidth = maxRadius;
-    // putText(drawing, displaySize, centerPt,FONT_HERSHEY_COMPLEX, 1, displayColor, 1, LINE_8);
 
     return drawing;
 }
 
+
+/*[DisplayDistance]====================================
+Function:
+    Outputs a text displaying the distance the object is
+    from the camera
+Parameter:
+    Mat: drawing
+        The frame meant to be searched through
+    Int: objectWidth
+        The pixel width of image
+    Int: pixelLength
+        The "actual" pixel size when calibrated from
+        12" of the camera
+Return:
+    Mat: outputImg
+        The image with the distance counter displayed
+=====================================================*/
 Mat Process::DisplayDistance(Mat drawing, int objectWidth, int pixelLength)
 {
 
@@ -137,12 +170,41 @@ Mat Process::DisplayDistance(Mat drawing, int objectWidth, int pixelLength)
     return drawing;
 }
 
+
+/*[DisplayTracking]====================================
+Function:
+    Finds the object and marks a circle around the object
+Parameter:
+    Mat: drawing
+        The frame meant to be searched through
+    Int: objectWidth
+        The pixel width of image
+    Point2f: objectPoint
+        Location on the frame of where the object is
+Return:
+    Mat: outputImg
+        The image with a circle tracking the object
+        tracked
+=====================================================*/
 Mat Process::DisplayTracking(Mat drawing, int objectWidth, Point2f objectPoint)
 {
     circle(drawing, objectPoint, objectWidth, Scalar(255, 255, 255), 2);
     return drawing;
 }
 
+/*[Calibration]========================================
+Function:
+    Automatically changes the pixel sizing to match
+    the intended size of object
+Parameter:
+    Mat: frame
+        The frame meant to be searched through
+    Int: pixelLength
+        The true pixel count of the object at 12"
+Return:
+    Mat: outputImg
+        The image to show the camera
+=====================================================*/
 Mat Process::Calibration(Mat frame, int &pixelLength)
 {
     pair<int, int> pixelCalibrationReturn;
