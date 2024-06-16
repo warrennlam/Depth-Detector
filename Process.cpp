@@ -210,7 +210,7 @@ Mat Process::Calibration(Mat frame, int &pixelLength)
 
     Mat outputImg;
 
-    blur(frame, outputImg, {80, 80});
+    blur(frame, outputImg, {100, 100});
     outputImg = HSVConverter(outputImg);
 
     bitwise_not(outputImg, outputImg);

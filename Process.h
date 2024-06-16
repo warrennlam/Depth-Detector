@@ -25,7 +25,6 @@ private:
     int maxRadius;
     Point2f centerPt;
     Scalar displayColor;
-
     double distanceFromCamera;
 
 public:
