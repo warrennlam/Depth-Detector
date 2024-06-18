@@ -17,7 +17,6 @@ Mat src1;
 Mat src2;
 Mat dst;
  
- 
 static void on_trackbar( int, void *)
 {
  alpha = (double) alpha_slider/alpha_slider_max ;
