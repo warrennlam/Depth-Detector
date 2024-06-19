@@ -5,3 +5,6 @@ This is a preliminary test of a depth tracking software that tracks an object di
 
 ## Constraints
 Currently, the code is set to track objects with the color blue. This can be changed in the file `Process.cpp` In the function `HSVConverter` the user can choose the HSV values to select the object they want to search for.
+
+## Example
+An example of this code in action can be found thorugh the file `DepthDetectorVideo.mp4`. It shows me going through the whole sequence and the code following the desired object.
