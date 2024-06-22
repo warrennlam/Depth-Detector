@@ -3,6 +3,7 @@
 #include <thread>
 #include "opencv2/opencv.hpp"
 #include "Process.h"
+#include "ImageModifier.h"
 //==========================================================================================================
 
 using namespace cv;
@@ -22,6 +23,7 @@ void Process::DisplayScreen()
     height = 240;
     n_frames = 100;
     fps = 10;
+    ImageModifier imageModifier;
 
     string ffmpeg_cmd = string("ffmpeg -y -f rawvideo -r ") + to_string(fps) +
                         " -video_size " + to_string(width) + "x" + to_string(height) +
@@ -32,8 +34,9 @@ void Process::DisplayScreen()
     for (int i = 0; i < n_frames; i++)
     {
         Mat frame = Mat(height, width, CV_8UC3);
-        frame = Scalar(100, 100, 100);                                                                                                                                 // Fill background with dark gray
-        putText(frame, to_string(i + 1), Point(width / 2 - 50 * (int)(to_string(i + 1).length()), height / 2 + 50), FONT_HERSHEY_DUPLEX, 5, Scalar(30, 255, 255), 10); // Draw a green number
+        frame = Scalar(100, 100, 100);      
+        imageModifier.MyRectangle(frame, 500);                                                                                                                           // Fill background with dark gray
+        // putText(frame, to_string(i + 1), Point(width / 2 - 50 * (int)(to_string(i + 1).length()), height / 2 + 50), FONT_HERSHEY_DUPLEX, 5, Scalar(30, 255, 255), 10); // Draw a green number
 
         imshow("Loading Calibration", frame);
         waitKey(1); // Show the frame for testing
