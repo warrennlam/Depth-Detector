@@ -72,7 +72,6 @@ Mat Process::HSVConverter(Mat img)
     return returnImg;
 }
 
-
 /*[EdgeDetector]============================================================================================
 Function:
     Finds the Edges of the Object in Question
@@ -140,7 +139,6 @@ Mat Process::EdgeDetector(Mat outputImg, int &objectWidth, Point2f &objectPoint)
     return drawing;
 }
 
-
 /*[DisplayDistance]=========================================================================================
 Function:
     Outputs a text displaying the distance the object is
@@ -167,7 +165,6 @@ Mat Process::DisplayDistance(Mat drawing, int objectWidth, int pixelLength)
 
     return drawing;
 }
-
 
 /*[DisplayTracking]=========================================================================================
 Function:
@@ -256,7 +253,7 @@ Mat Process::Calibration(Mat frame, int &pixelLength)
     String sizeInpCalibration;
 
     pixelCalibrationReturn.second = maxRadius;
-    putText(frame, "Press ESC When The Object is 12 Inches Away", Point(15,60),FONT_HERSHEY_COMPLEX , 1, Scalar(235, 112, 249), 2); 
+    putText(frame, "Press ESC When The Object is 12 Inches Away", Point(15, 60), FONT_HERSHEY_COMPLEX, 1, Scalar(235, 112, 249), 2);
     pixelLength = maxRadius;
 
     return frame;
