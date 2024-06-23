@@ -35,8 +35,8 @@ void Process::DisplayScreen()
     {
         Mat frame = Mat(height, width, CV_8UC3);
         frame = Scalar(100, 100, 100);      
-        imageModifier.MyRectangle(frame, 500);                                                                                                                           // Fill background with dark gray
-        // putText(frame, to_string(i + 1), Point(width / 2 - 50 * (int)(to_string(i + 1).length()), height / 2 + 50), FONT_HERSHEY_DUPLEX, 5, Scalar(30, 255, 255), 10); // Draw a green number
+        imageModifier.MyRectangle(frame, 200);   
+        imageModifier.LoadingRectangle(frame, 200, i);                                                                                                                        // Fill background with dark gray
 
         imshow("Loading Calibration", frame);
         waitKey(1); // Show the frame for testing

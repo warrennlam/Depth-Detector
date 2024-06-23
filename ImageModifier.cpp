@@ -10,7 +10,7 @@
  //==========================================================================================================
 
 
-#define w 300
+#define w 20
 using namespace cv;
 
 
@@ -69,13 +69,30 @@ Return:
 void ImageModifier::MyRectangle(Mat img, int size)
 {
 
-    thickness = 2;
+    thickness = -1;
     lineType = 8;
     
     rectangle( img,
-    Point( w + size, w + size ),
-    Point( w , w),
-    Scalar( 255, 0, 255 ),
+    Point( w  , w ),
+    Point( w + size , w + (size/5)),
+    Scalar( 255, 255, 255 ),
+    thickness,
+    lineType );
+
+
+}
+
+void ImageModifier::LoadingRectangle(Mat img, int size, int step)
+{
+    thickness = -1;
+    lineType = 8;
+    double stepSize = step / 99.0;
+    int ptSize = (w + size) * stepSize;
+    
+    rectangle( img,
+    Point( w  , w ),
+    Point( ptSize , w + (size/5)),
+    Scalar( 10, 255, 100 ),
     thickness,
     lineType );
 
