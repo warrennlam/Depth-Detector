@@ -11,6 +11,7 @@
 
 
 #define w 20
+#define h 100
 using namespace cv;
 
 
@@ -43,8 +44,8 @@ void ImageModifier::MyEllipse(Mat img, double angle)
     lineType );
 
     ellipse( img,
-    Point( w + 400, w + 20 ),
-    Size( w / 2, w / 2 ),
+    Point( w + 400, h + 20 ),
+    Size( w / 2, h / 2 ),
     angle,
     0,
     360,
@@ -73,9 +74,9 @@ void ImageModifier::MyRectangle(Mat img, int size)
     lineType = 8;
     
     rectangle( img,
-    Point( w  , w ),
-    Point( w + size , w + (size/5)),
-    Scalar( 255, 255, 255 ),
+    Point( w  , h ),
+    Point( w + size , h + (size/5)),
+    Scalar( 230, 230, 230 ),
     thickness,
     lineType );
 
@@ -90,8 +91,8 @@ void ImageModifier::LoadingRectangle(Mat img, int size, int step)
     int ptSize = (w + size) * stepSize;
     
     rectangle( img,
-    Point( w  , w ),
-    Point( ptSize , w + (size/5)),
+    Point( w  , h ),
+    Point( ptSize , h + (size/5)),
     Scalar( 10, 255, 100 ),
     thickness,
     lineType );

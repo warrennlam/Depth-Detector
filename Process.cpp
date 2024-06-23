@@ -19,7 +19,7 @@ Return:
 ==========================================================================================================*/
 void Process::DisplayScreen()
 {
-    width = 320;
+    width = 240;
     height = 240;
     n_frames = 100;
     fps = 10;
@@ -36,7 +36,12 @@ void Process::DisplayScreen()
         Mat frame = Mat(height, width, CV_8UC3);
         frame = Scalar(100, 100, 100);      
         imageModifier.MyRectangle(frame, 200);   
-        imageModifier.LoadingRectangle(frame, 200, i);                                                                                                                        // Fill background with dark gray
+        imageModifier.LoadingRectangle(frame, 200, i);
+        
+        putText(frame, "Loading", Point2f(55, 50), FONT_HERSHEY_COMPLEX, 1, Scalar(255, 255, 255), 2, LINE_8);
+
+
+
 
         imshow("Loading Calibration", frame);
         waitKey(1); // Show the frame for testing
