@@ -83,6 +83,20 @@ void ImageModifier::MyRectangle(Mat img, int size)
 
 }
 
+
+/*[Loading Rectangle]=============================================================================================
+Function:
+    Creates the loading animation of the rectangle
+Parameter:
+    Mat: frame
+        The frame meant to be searched through
+    Int: size
+        Draw the rectangle at the specified size
+    Int: Step
+        The current process in the loading
+Return:
+    Void
+==========================================================================================================*/
 void ImageModifier::LoadingRectangle(Mat img, int size, int step)
 {
     thickness = -1;
