@@ -17,15 +17,10 @@ git clone https://github.com/warrennlam/Depth-Detector.git
 ```
 
 ### 2. Install OpenCV
-Mac:
-```bash
-brew install opencv
-```
-Windows:
+Install via Link
 ```bash
 https://opencv.org/releases/
 ```
-Install via the link
 
 ### 3. Build the Project
 ```bash
