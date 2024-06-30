@@ -8,3 +8,28 @@ Currently, the code is set to track objects with the color blue. This can be cha
 
 ## Example
 An example of this code in action can be found through the file `DepthDetectorVideo.mp4`. It shows me going through the whole sequence and code, following the desired object.
+
+## How to Run the Program
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/warrennlam/Depth-Detector.git
+```
+
+### 2. Install OpenCV
+Mac:
+```bash
+brew install opencv
+```
+Windows:
+```bash
+https://opencv.org/releases/
+```
+Install via the link
+
+### 3. Build the Project
+```bash
+cd Depth-Detector/build
+./Detector
+```
+Make sure that you are in the build folder!
